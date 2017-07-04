@@ -1,0 +1,5 @@
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BOL\bin\Debug\EIS.BOL.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BOL\bin\Debug\EIS.BOL.pdb
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BOL\obj\Debug\EIS.BOL.csprojResolveAssemblyReference.cache
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BOL\obj\Debug\EIS.BOL.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BOL\obj\Debug\EIS.BOL.pdb
