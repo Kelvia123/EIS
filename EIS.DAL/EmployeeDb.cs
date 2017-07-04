@@ -7,19 +7,19 @@ namespace EIS.DAL
 {
     public class EmployeeDb : DALBase
     {
-        public IEnumerable<Emloyee> GetAll()
+        public IEnumerable<Employee> GetAll()
         {
             return _db.Employees.ToList();
         }
 
-        public Emloyee GetById(string id)
+        public Employee GetById(string id)
         {
             return _db.Employees.Find(id);
         }
 
-        public void Insert(Emloyee emloyee)
+        public void Insert(Employee employee)
         {
-            _db.Employees.Add(emloyee);
+            _db.Employees.Add(employee);
             Save();
         }
 
@@ -30,15 +30,15 @@ namespace EIS.DAL
             Save();
         }
 
-        public void Update(Emloyee emloyee)
+        public void Update(Employee employee)
         {
-            _db.Entry(emloyee).State = EntityState.Modified;
+            _db.Entry(employee).State = EntityState.Modified;
             _db.Configuration.ValidateOnSaveEnabled = false;
             Save();
             _db.Configuration.ValidateOnSaveEnabled = true;
         }
 
-        public Emloyee GetByEmail(string email)
+        public Employee GetByEmail(string email)
         {
             return _db.Employees.FirstOrDefault(e => e.Email == email);
         }

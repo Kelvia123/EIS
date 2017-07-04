@@ -1,0 +1,11 @@
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\bin\Debug\EIS.BLL.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\bin\Debug\EIS.BLL.pdb
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\bin\Debug\EIS.BOL.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\bin\Debug\EIS.DAL.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\bin\Debug\EntityFramework.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\bin\Debug\EIS.BOL.pdb
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\bin\Debug\EIS.DAL.pdb
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\bin\Debug\EntityFramework.xml
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\obj\Debug\EIS.BLL.csprojResolveAssemblyReference.cache
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\obj\Debug\EIS.BLL.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.BLL\obj\Debug\EIS.BLL.pdb

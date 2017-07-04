@@ -1,0 +1,16 @@
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EIS.ConsoleUI.exe.config
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EIS.ConsoleUI.exe
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EIS.ConsoleUI.pdb
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EIS.BOL.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EIS.DAL.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EntityFramework.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EIS.BOL.pdb
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EIS.DAL.pdb
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EntityFramework.xml
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\obj\Debug\EIS.ConsoleUI.csprojResolveAssemblyReference.cache
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\obj\Debug\EIS.ConsoleUI.exe
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\obj\Debug\EIS.ConsoleUI.pdb
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EIS.BLL.dll
+D:\Projects\AngularJS\EmployeeInformationSystem\EIS.ConsoleUI\bin\Debug\EIS.BLL.pdb

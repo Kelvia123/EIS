@@ -7,10 +7,11 @@ namespace EIS.DAL
     {
         public EISDBContext() : base("EISDB")
         {
-            
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EISDBContext, EIS.DAL.Migrations.Configuration>());
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Role> Roles { get; set; }
-        public DbSet<Emloyee> Employees { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
 }
