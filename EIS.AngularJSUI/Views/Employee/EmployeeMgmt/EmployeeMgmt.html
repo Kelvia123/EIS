@@ -1,4 +1,31 @@
-﻿<div class="well">
+﻿<form class="form-horizontal" name="CreateEmployeeForm">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Creaet Employee Profile</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="inputEmployeeId" class="col-lg-2 control-label">Employee Id *</label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" id="inputEmployeeId">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-lg-2 control-label">Email *</label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" id="inputEmail">                    
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="well">
     <input type="text" class="form-control" ng-model="search" placeholder="Type in to search employee"/>
 </div>
 <div class="panel panel-primary">
