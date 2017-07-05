@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using EIS.BLL;
 using EIS.BOL;
 
 namespace EIS.API.Controllers
 {
+    [EnableCors("*","*","*")]
     public class EmployeeController : ApiController
     {
         private EmployeeBs _employeeBs;
