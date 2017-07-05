@@ -14,3 +14,22 @@ appEIS.config(function($routeProvider) {
     $routeProvider.when('/Logout', {  });
     $routeProvider.otherwise({ redirectTo: '/Home' });
 });
+
+appEIS.factory('utilityService', function() {
+    var utilityObj = {};
+
+    utilityObj.randomPassword = function() {
+        return Math.random().toString(36).substr(2, 5);
+    };
+
+    utilityObj.slideUpAlert = function () {
+
+        $("#alert").fadeTo(2000, 500).slideUp(1000);
+        //$("#alert").fadeTo(2000, 500).slideUp(1000, function() {
+        //    $("#alert").slideUp(1000);
+        //});
+    };
+
+
+    return utilityObj;
+});

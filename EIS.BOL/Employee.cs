@@ -12,6 +12,12 @@ namespace EIS.BOL
     [Table("Employee")]
     public class Employee
     {
+        public Employee()
+        {
+            CreatedDate = DateTime.Now;
+            RoleId = 2;
+        }
+
         [Key]
         [Column(TypeName = "varchar")]
         [StringLength(50)]
@@ -35,7 +41,7 @@ namespace EIS.BOL
         public string Gender { get; set; }
         public string Contact { get; set; }
         public string Address { get; set; }
-        public DateTime DateOfJoin { get; set; }
+        public DateTime? DateOfJoin { get; set; }
         public string Designation { get; set; }
         public double? TotalExp { get; set; }
         public double? RelevantExp { get; set; }

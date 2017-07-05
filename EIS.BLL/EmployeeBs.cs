@@ -19,7 +19,7 @@ namespace EIS.BLL
 
         public IEnumerable<Employee> GetAll()
         {
-            return _employeeDb.GetAll().ToList();
+            return _employeeDb.GetAll();
         }
 
         public Employee GetById(string id)
@@ -57,14 +57,24 @@ namespace EIS.BLL
             _employeeDb.Delete(id);
         }
 
+        private bool IsValidOnInsert(Employee employee)
+        {
+            //Unique Emloyee Id Validation
+            var count = GetAll().Where(e => e.EmployeeId == employee.EmployeeId).ToList().Count();
+            if (count != 0)
+                ErrorList.Add("This Employee Id Already Exits");
+                
+            //Unique Email Validation
+            count = GetAll().Where(e => e.Email == employee.Email).ToList().Count();
+            if (count != 0)
+                ErrorList.Add("This Emial Already Exits");
+
+            return ErrorList.Count == 0;
+        }
+
         private bool IsValidOnUpdate(Employee employee)
         {
             return true;
-        }
-
-        private bool IsValidOnInsert(Employee employee)
-        {
-            return true;
-        }
+        }        
     }
 }

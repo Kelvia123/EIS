@@ -14,7 +14,7 @@ namespace EIS.API.Controllers
     [EnableCors("*","*","*")]
     public class EmployeeController : ApiController
     {
-        private EmployeeBs _employeeBs;
+        private readonly EmployeeBs _employeeBs;
 
         public EmployeeController()
         {
@@ -44,9 +44,16 @@ namespace EIS.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            _employeeBs.Insert(employee);
-
-            return CreatedAtRoute("DefaultApi", new { id = employee.EmployeeId }, employee);
+            //Insert succeeded
+            if (_employeeBs.Insert(employee))           
+                return CreatedAtRoute("DefaultApi", new {id = employee.EmployeeId}, employee);            
+            
+            //Insert failed
+            foreach (var error in _employeeBs.ErrorList)
+            {
+                ModelState.AddModelError("", error);
+            }
+            return BadRequest(ModelState);                                  
         }
 
         [ResponseType(typeof(Employee))]
