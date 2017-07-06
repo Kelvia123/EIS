@@ -31,10 +31,21 @@
                 return employee;
             }
 
+            empMgmtObj.deleteEmployeeById = function(empId) {
+                var employee;
+
+                employee = $http({ method: 'Delete', url: 'http://localhost:4676/api/Employee', params: { id: empId } })
+                            .then(function(response) {
+                                return response.data;
+                            });
+
+                return employee;
+            }
+
             return empMgmtObj;
         });
 
-    appEIS.controller('employeeMgmtController', function ($scope, employeeMgmtService, utilityService) {
+    appEIS.controller('employeeMgmtController', function ($scope, employeeMgmtService, utilityService, $window) {
 
         employeeMgmtService.getAll().then(function(result) {
             $scope.employees = result;
@@ -67,6 +78,29 @@
                 });
             }
         }
+
+        $scope.DeleteEmployeeById = function (EmpId) {
+
+            if ($window.confirm("Do you want to delete Employee with id: " + EmpId + "?")) {
+                employeeMgmtService.deleteEmployeeById(EmpId)
+                    .then(function (result) {
+                        if (result.ModelState == null) {
+                            $scope.Msg = "You have successfully deleted Employee with Id: " + EmpId;
+                            $scope.showAlert = true;
+                            utilityService.slideUpAlert();
+
+                            employeeMgmtService.getAll().then(function (result) {
+                                $scope.employees = result;
+                            });
+                        }
+                        else {
+                            $scope.serverErrorMsgs = result.ModelState;
+                        }
+                    });
+            }
+        }
+
+
     });
 
 })();

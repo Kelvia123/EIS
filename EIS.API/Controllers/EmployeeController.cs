@@ -32,8 +32,7 @@ namespace EIS.API.Controllers
         {
             var employee = _employeeBs.GetById(id);
 
-            if (employee == null)
-                return NotFound();
+            if (employee == null) return NotFound();
 
             return Ok(employee);
         }
