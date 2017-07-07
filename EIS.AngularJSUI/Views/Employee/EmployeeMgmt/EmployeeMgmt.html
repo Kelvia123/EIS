@@ -62,7 +62,7 @@
             </thead>
             <tbody>
                 <tr dir-paginate="emp in employees | filter:search | orderBy:key:AscOrDesc | itemsPerPage:10">
-                    <td>{{emp.EmployeeId}}</td>
+                    <td><a href="#/EmployeeProfile/{{emp.EmployeeId}}">{{emp.EmployeeId}}</a></td>
                     <td>{{emp.Email}}</td>
                     <td>{{emp.FirstName}} {{emp.LastName}}</td>
                     <td>{{emp.Contact}}</td>
