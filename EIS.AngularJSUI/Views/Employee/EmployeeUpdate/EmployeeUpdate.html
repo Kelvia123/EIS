@@ -1,4 +1,7 @@
-﻿<form name="UpdateEmployeeForm">    
+﻿<div ng-show="Emp == null">
+    <h1>Employee Doesn't Exist</h1>
+</div>
+<form name="UpdateEmployeeForm" novalidate ng-show="Emp != null">    
     <div class="panel panel-primary" id="profilePanel">
         <!--Panel Heading-->
         <div class="panel-heading">
@@ -13,27 +16,28 @@
             </ul>
             <!--Tab Contents-->
             <div id="myTabContent" class="tab-content">
+                <!--Personal Tab-->
                 <div class="tab-pane fade active in" id="Personal">
                     <div class="well">
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <label class="control-label col-md-2">Employee Id</label>
                                 <div class="col-md-4">
-                                    <input type="text" name="EmployeeId" class="form-control" ng-model="Emp.EmployeeId" ng-disabled="true" value="" required />
+                                    <input type="text" name="EmployeeId" class="form-control" ng-model="Emp.EmployeeId" ng-disabled="true" value="" required/>
                                 </div>
                                 <label class="control-label col-md-2">Email</label>
                                 <div class="col-md-4">
-                                    <input type="email" name="Email" class="form-control" ng-model="Emp.Email" ng-disabled="true" value="" required />
-                                </div>                              
+                                    <input type="email" name="Email" class="form-control" ng-model="Emp.Email" ng-disabled="true" value="" required/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">First Name *</label>
                                 <div class="col-md-4">
-                                    <input type="text" name="FirstName" class="form-control" ng-model="Emp.FirstName" value="" required />
+                                    <input type="text" name="FirstName" class="form-control" ng-model="Emp.FirstName" value="" required/>
                                 </div>
                                 <label class="control-label col-md-2">Last Name *</label>
                                 <div class="col-md-4">
-                                    <input type="text" name="LastName" class="form-control" ng-model="Emp.LastName" value="" required />
+                                    <input type="text" name="LastName" class="form-control" ng-model="Emp.LastName" value="" required/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -64,13 +68,14 @@
                         </div>
                     </div>
                 </div>
+                <!--Professional Tab-->
                 <div class="tab-pane fade" id="Professional">
                     <div class="well">
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="control-label col-md-2">Date of Joining</label>
+                                <label class="control-label col-md-2">Date of Join</label>
                                 <div class="col-md-4">
-                                    <input type="date" name="DateOfJoining" class="form-control" ng-model="Emp.DateOfJoining" value=""/>
+                                    <input type="date" name="DateOfJoining" class="form-control" ng-model="Emp.DateOfJoin" value=""/>
                                 </div>
                                 <label class="control-label col-md-2">Designation</label>
                                 <div class="col-md-4">
@@ -97,27 +102,28 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bank Name</label>
                                 <div class="col-md-4">
-                                    <input type="text" name="BankName" class="form-control" ng-model="Emp.BankName" value="" />
+                                    <input type="text" name="BankName" class="form-control" ng-model="Emp.BankName" value=""/>
                                 </div>
                                 <label class="control-label col-md-2">IFSC Code</label>
                                 <div class="col-md-4">
-                                    <input type="text" name="IFSCCode" class="form-control" ng-model="Emp.IFSCCode" value="" />
+                                    <input type="text" name="IFSCCode" class="form-control" ng-model="Emp.IFSCCode" value=""/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">Account No</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" ng-model="Emp.AccountNumber" name="AccountNumber" value="" />
+                                    <input type="text" class="form-control" ng-model="Emp.AccountNumber" name="AccountNumber" value=""/>
                                 </div>
                                 <label class="control-label col-md-2">PAN</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" ng-model="Emp.PAN" value="" name="PAN" />
+                                    <input type="text" class="form-control" ng-model="Emp.PAN" value="" name="PAN"/>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--Button Group-->
             <div class="form-group">
                 <div class="col-md-offset-9">
                     <input type="submit" value="Save" class="btn btn-primary btn-lg" ng-click=""/>
@@ -127,9 +133,3 @@
         </div>
     </div>
 </form>
-
-<script>   
-    $('#profilePanel a').click(function(e) {
-        e.preventDefault();
-    });
-</script>
