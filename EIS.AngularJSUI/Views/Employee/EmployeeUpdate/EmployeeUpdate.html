@@ -16,6 +16,7 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#Personal" data-toggle="tab" aria-expanded="true">Personal Details</a></li>
                 <li class=""><a href="#Professional" data-toggle="tab" aria-expanded="false">Professional Details</a></li>
+                <li><a href="#Pic" data-toggle="tab" aria-expanded="false">Profile Pic</a></li>
             </ul>
             <!--Tab Contents-->
             <div id="myTabContent" class="tab-content">
@@ -125,23 +126,37 @@
                         </div>
                     </div>
                 </div>
-                <!--Client Side Validation Error Messages-->
-                <div>
-                    <ul>
-                        <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.FirstName.$error.required">First Name is required</li>                        
-                        <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.LastName.$error.required">Last Name is required</li>                        
-                        <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.Gender.$error.required">Gender is required</li>                        
-                        <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.Contact.$error.required">Contact Number is required</li>                        
-                        <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.Address.$error.required">Address is required</li>                        
-                    </ul>
+                <!--Profile Picture Tab-->
+                <div class="tab-pane fade" id="Pic">
+                    <div class="well">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-offset-0 col-md-4">
+                                    <img src="" alt="" height="186" width="186"/>
+                                    <input type="file" class="form-control" />
+                                    <input type="button" class="btn btn-primary" value="Upload" ng-click="UploadFile()"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!--Server Side Error Messages-->
-                <div>
-                    <ul ng-repeat="error in serverErrorMsgs">
-                        <li class="alert alert-danger">{{error[0]}}</li>
-                    </ul>
+                    <!--Client Side Validation Error Messages-->
+                    <div>
+                        <ul>
+                            <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.FirstName.$error.required">First Name is required</li>
+                            <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.LastName.$error.required">Last Name is required</li>
+                            <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.Gender.$error.required">Gender is required</li>
+                            <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.Contact.$error.required">Contact Number is required</li>
+                            <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.Address.$error.required">Address is required</li>
+                        </ul>
+                    </div>
+                    <!--Server Side Error Messages-->
+                    <div>
+                        <ul ng-repeat="error in serverErrorMsgs">
+                            <li class="alert alert-danger">{{error[0]}}</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
             <!--Button Group-->
             <div class="form-group">
                 <div class="col-md-offset-9">
