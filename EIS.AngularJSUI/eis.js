@@ -15,7 +15,7 @@ appEIS.config(function($routeProvider) {
     $routeProvider.otherwise({ redirectTo: '/Home' });
 });
 
-appEIS.factory('utilityService', function() {
+appEIS.factory('utilityService', function($http) {
     var utilityObj = {};
 
     utilityObj.randomPassword = function() {
@@ -30,6 +30,49 @@ appEIS.factory('utilityService', function() {
         //});
     };
 
+    utilityObj.uploadFile = function(file, uploadUrl, eId) {
+        var fd = new FormData();
+        fd.append('file', file);
+
+        var img;
+
+        img = $http({
+            method: 'Post',
+            url: uploadUrl + eId,
+            data: fd,
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        }).
+        then(function (response) {
+
+            return response.data;
+
+        }, function (error) {
+
+            return error.data;
+
+        });
+
+        return img;
+    };
+
 
     return utilityObj;
+});
+
+//ng-model doesn't support file, so I create a directive to bind the file to a scope variable
+appEIS.directive('fileModel', function($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function() {
+                scope.$apply(function() {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    }
 });

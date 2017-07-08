@@ -49,6 +49,14 @@
             }
         };
 
+        $scope.UploadFile = function() {
+            var file = $scope.myFile;
+            var uploadUrl = 'http://localhost:4676/api/Upload/';
+            utilityService.uploadFile(file, uploadUrl, $scope.eid).then(function(result) {
+
+            });
+        };
+
         $('#profilePanel a').click(function (e) {
             e.preventDefault();
         });
