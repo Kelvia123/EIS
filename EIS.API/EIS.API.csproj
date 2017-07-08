@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Files\ProfilePics\anonymous.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -119,7 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Files\ProfilePics\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

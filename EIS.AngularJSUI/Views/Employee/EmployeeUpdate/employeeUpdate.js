@@ -33,6 +33,10 @@
                                  $scope.Emp.DateOfJoin = new Date($scope.Emp.DateOfJoin);
                              });
 
+        utilityService.getFile('http://localhost:4676/api/Upload/', $scope.eid).then(function (result) {
+            $scope.profilePic = result;
+        });
+
         $scope.UpdateEmployee = function(Emp, IsValid) {
             if (IsValid) {
                 employeeUpdateService.updateEmployee(Emp).then(function(result) {
@@ -53,7 +57,7 @@
             var file = $scope.myFile;
             var uploadUrl = 'http://localhost:4676/api/Upload/';
             utilityService.uploadFile(file, uploadUrl, $scope.eid).then(function(result) {
-
+                $scope.profilePic = result;
             });
         };
 

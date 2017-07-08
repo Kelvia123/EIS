@@ -56,6 +56,17 @@ appEIS.factory('utilityService', function($http) {
         return img;
     };
 
+    utilityObj.getFile = function(getFileUrl, eId) {
+        var img;
+
+        img = $http({ method: 'Get', url: getFileUrl, params: { id: eId } }).
+        then(function (response) {
+                return response.data;
+        });
+
+        return img;
+    };
+
 
     return utilityObj;
 });
