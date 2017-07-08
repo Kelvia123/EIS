@@ -56,14 +56,21 @@ namespace EIS.API.Controllers
         }
 
         [ResponseType(typeof(Employee))]
-        public IHttpActionResult Put(int id, Employee employee)
+        public IHttpActionResult Put(Employee employee)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            _employeeBs.Update(employee);
+            //Update succeeded
+            if (_employeeBs.Update(employee)) return Ok(employee);
+           
+            //Update failed
+            foreach (var error in _employeeBs.ErrorList)
+            {
+                ModelState.AddModelError("", error);
+            }
 
-            return Ok(employee);
+            return BadRequest(ModelState);
         }
 
         [ResponseType(typeof(Employee))]

@@ -1,11 +1,14 @@
 ﻿<div ng-show="Emp == null">
     <h1>Employee Doesn't Exist</h1>
 </div>
+<div class="alert alert-success" id="alert" ng-show="showAlert">
+    {{Msg}}
+</div>
 <form name="UpdateEmployeeForm" novalidate ng-show="Emp != null">    
     <div class="panel panel-primary" id="profilePanel">
         <!--Panel Heading-->
         <div class="panel-heading">
-            <h3 class="panel-title">Panel primary</h3>
+            <h3 class="panel-title">Employee Profile</h3>
         </div>
         <!--Panel Body-->
         <div class="panel-body">
@@ -122,11 +125,27 @@
                         </div>
                     </div>
                 </div>
+                <!--Client Side Validation Error Messages-->
+                <div>
+                    <ul>
+                        <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.FirstName.$error.required">First Name is required</li>                        
+                        <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.LastName.$error.required">Last Name is required</li>                        
+                        <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.Gender.$error.required">Gender is required</li>                        
+                        <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.Contact.$error.required">Contact Number is required</li>                        
+                        <li class="alert alert-danger" ng-if="UpdateEmployeeForm.$submitted && UpdateEmployeeForm.Address.$error.required">Address is required</li>                        
+                    </ul>
+                </div>
+                <!--Server Side Error Messages-->
+                <div>
+                    <ul ng-repeat="error in serverErrorMsgs">
+                        <li class="alert alert-danger">{{error[0]}}</li>
+                    </ul>
+                </div>
             </div>
             <!--Button Group-->
             <div class="form-group">
                 <div class="col-md-offset-9">
-                    <input type="submit" value="Save" class="btn btn-primary btn-lg" ng-click=""/>
+                    <input type="submit" value="Save" class="btn btn-primary btn-lg" ng-click="UpdateEmployee(Emp, UpdateEmployeeForm.$valid)"/>
                     <input type="button" value="Cancel" class="btn btn-primary btn-lg"/>
                 </div>
             </div>

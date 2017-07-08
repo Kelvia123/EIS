@@ -74,7 +74,13 @@ namespace EIS.BLL
 
         private bool IsValidOnUpdate(Employee employee)
         {
-            return true;
+            //Total Exp should be greater than Relevant Exp
+            if (employee.RelevantExp > employee.TotalExp)
+            {
+                ErrorList.Add("Total Exp should be greater than Relevant Exp");
+            }
+
+            return ErrorList.Count == 0;
         }        
     }
 }

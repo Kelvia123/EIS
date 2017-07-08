@@ -2,31 +2,56 @@
     appEIS.factory('employeeUpdateService', function($http) {
         var empUpdateObj = {};
 
-        empUpdateObj.getById = function (empId) {
-            var employee;
+        empUpdateObj.getEmpById = function (empId) {
+            var Emp;
 
-            employee = $http({ method: 'Get', url: 'http://localhost:4676/api/Employee', params: { id: empId } })
+            Emp = $http({ method: 'Get', url: 'http://localhost:4676/api/Employee', params: { id: empId } })
                         .then(function(response) { return response.data; });
 
-            return employee;
+            return Emp;
         }
+
+        empUpdateObj.updateEmployee = function (employee) {
+            var Emp;
+            Emp =  $http({ method: 'Put', url: 'http://localhost:4676/api/Employee', data: employee })
+                            .then(function (response) { return response.data; },
+                                  function (error) { return error.data; });
+
+            return Emp;
+        };
 
         return empUpdateObj;
     });
 
-    appEIS.controller('employeeUpdateController', function ($scope, $routeParams, employeeUpdateService) {
-
-        $('#profilePanel a').click(function (e) {
-            e.preventDefault();
-        });
-
+    appEIS.controller('employeeUpdateController', function ($scope, $routeParams, employeeUpdateService, utilityService) {
+        
         $scope.eid = $routeParams.EmployeeId;
-        employeeUpdateService.getById($scope.eid)
+        employeeUpdateService.getEmpById($scope.eid)
                              .then(function(result) {
                                  $scope.Emp = result;
                                  //For DOJ's proper presentation in date input
                                  $scope.Emp.DateOfJoin = new Date($scope.Emp.DateOfJoin);
                              });
+
+        $scope.UpdateEmployee = function(Emp, IsValid) {
+            if (IsValid) {
+                employeeUpdateService.updateEmployee(Emp).then(function(result) {
+                        if (result.ModelState == null) {
+                            $scope.Emp = result;
+                            $scope.Msg = "You have successfully updated Employee with Id: " + $scope.Emp.EmployeeId;
+                            $scope.showAlert = true;
+                            $scope.serverErrorMsgs = "";
+                            utilityService.slideUpAlert();
+                        } else {
+                            $scope.serverErrorMsgs = result.ModelState;
+                        }
+                });
+            }
+        };
+
+        $('#profilePanel a').click(function (e) {
+            e.preventDefault();
+        });
     });
 
 })();
