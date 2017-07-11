@@ -11,7 +11,20 @@ appEIS.config(function($routeProvider) {
     $routeProvider.when('/EmployeeManagement', { templateUrl: 'Views/Employee/EmployeeMgmt/EmployeeMgmt.html', controller: 'employeeMgmtController' });
     $routeProvider.when('/EmployeeProfile/:EmployeeId?', { templateUrl: 'Views/Employee/EmployeeUpdate/EmployeeUpdate.html', controller: 'employeeUpdateController' });
     $routeProvider.when('/Login', { templateUrl: 'Views/Common/Login/Login.html', controller: 'loginController' });
-    $routeProvider.when('/Logout', {  });
+    $routeProvider.when('/Logout',
+        {
+            resolve: {
+                auth: function($rootScope, $cookies, $location) {
+                    $cookies.put("Auth", "false");
+                    $rootScope.Auth = $cookies.get("Auth");
+
+                    $cookies.put("EmpSignIn", null);
+                    $rootScope.EmpSingIn = $cookies.get("EmpSignIn");
+
+                    $location.path('/Login');
+                }
+            }
+        });
     $routeProvider.otherwise({ redirectTo: '/Home' });
 });
 
