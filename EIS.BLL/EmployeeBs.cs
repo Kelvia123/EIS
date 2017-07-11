@@ -10,7 +10,7 @@ namespace EIS.BLL
 {
     public class EmployeeBs : BLLBase
     {
-        private EmployeeDb _employeeDb;
+        private readonly EmployeeDb _employeeDb;
 
         public EmployeeBs()
         {
@@ -27,9 +27,26 @@ namespace EIS.BLL
             return _employeeDb.GetById(id);
         }
 
-        public Employee GetByEmail(string email)
+        public bool GetByEmail(ref Employee emp)
         {
-            return _employeeDb.GetByEmail(email);
+            var empInDb = _employeeDb.GetByEmail(emp.Email);
+
+            if (empInDb == null)
+            {
+                ErrorList.Add("Email Does not Exist");
+            }
+            else if (empInDb.Password != emp.Password)
+            {
+                ErrorList.Add("Invalid Password");
+            }
+
+            if (ErrorList.Count > 0)
+            {
+                return false;
+            }
+
+            emp = empInDb;
+            return true;
         }
 
         public bool Insert(Employee employee)
