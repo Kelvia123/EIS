@@ -108,3 +108,14 @@ appEIS.directive('fileModel', function($parse) {
         }
     }
 });
+
+appEIS.controller('appEISController', function ($rootScope, $location) {
+
+     $rootScope.$on('$routeChangeStart', function(event, next, current) {
+         var guestRoutes = ['/Home', '/RecoverPassword'];
+
+         if ($rootScope.Auth == 'false' && $.inArray(next.$$route.originalPath, guestRoutes) == -1) {
+             $location.path('/Login');
+         }
+     });
+});
