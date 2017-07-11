@@ -1,1 +1,44 @@
-﻿Login - {{msg}}
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Login</h3>
+    </div>
+    <div class="panel-body">
+        <form name="LoginForm" novalidate="">
+            <div class="form-horizontal">
+                <!--Email-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Email</label>
+                    <div class="col-md-4">
+                        <input type="email" ng-model="Emp.Email" name="Email" class="form-control" value="" required/>
+                    </div>
+                </div>
+                <!--Password-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Password</label>
+                    <div class="col-md-4">
+                        <input type="password" ng-model="Emp.Password" name="Password" class="form-control" value="" required/>
+                    </div>
+                </div>
+                <!--Button-->
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-6">
+                        <input type="submit" name="SignIn" class="btn btn-primary" ng-click="Login(Emp, LoginForm.$valid)" value="Sign In"/>
+                        <a href="#/RecoverPassword" class="btn btn-link">Recover Password</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <!--Client Error-->
+                <ul>
+                    <li class="alert alert-danger" ng-if="LoginForm.$submitted && LoginForm.Email.$error.required">Email is required</li>
+                    <li class="alert alert-danger" ng-if="LoginForm.$submitted && LoginForm.Email.$error.email">Email is Invalid</li>
+                    <li class="alert alert-danger" ng-if="LoginForm.$submitted && LoginForm.Password.$error.required">Password is required</li>
+                </ul>
+                <!--Server Error-->
+                <ul ng-repeat="error in serverErrorMsgs">
+                    <li class="alert alert-danger">{{error[0]}}</li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
