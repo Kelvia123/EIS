@@ -19,7 +19,7 @@ appEIS.config(function($routeProvider) {
                     $rootScope.Auth = $cookies.get("Auth");
 
                     $cookies.put("EmpSignIn", null);
-                    $rootScope.EmpSingIn = $cookies.get("EmpSignIn");
+                    $rootScope.EmpSignIn = $cookies.get("EmpSignIn");
 
                     $location.path('/Login');
                 }
@@ -34,6 +34,7 @@ appEIS.run(function($rootScope, $cookies) {
     }
 
     $rootScope.Auth = $cookies.get("Auth");
+    
 });
 
 appEIS.factory('utilityService', function($http) {
@@ -109,13 +110,23 @@ appEIS.directive('fileModel', function($parse) {
     }
 });
 
-appEIS.controller('appEISController', function ($rootScope, $location) {
+appEIS.controller('appEISController', function ($rootScope, $location, utilityService, $cookies) {
 
      $rootScope.$on('$routeChangeStart', function(event, next, current) {
          var guestRoutes = ['/Home', '/RecoverPassword'];
 
+         //If user hasn't login
          if ($rootScope.Auth == 'false' && $.inArray(next.$$route.originalPath, guestRoutes) == -1) {
              $location.path('/Login');
+         }
+         //If user already login
+         else if ($rootScope.Auth == 'true') {
+
+             $rootScope.EmpSignIn = $cookies.getObject("EmpSignIn");
+             utilityService.getFile("http://localhost:4676/api/Upload/", $rootScope.EmpSignIn.EmployeeId)
+                 .then(function(result) {
+                     $rootScope.imgSideBar = result;
+                 });
          }
      });
 });

@@ -33,7 +33,8 @@
                             $rootScope.Auth = $cookies.get("Auth");
 
                             $cookies.putObject("EmpSignIn", $scope.Emp);
-                            $rootScope.EmpSingIn = $cookies.getObject("EmpSignIn");
+                            $rootScope.EmpSignIn = $cookies.getObject("EmpSignIn");
+                            //console.log($rootScope.EmpSignIn);
 
                             $location.path("/");
                         } else {

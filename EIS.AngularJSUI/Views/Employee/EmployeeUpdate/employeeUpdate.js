@@ -23,9 +23,9 @@
         return empUpdateObj;
     });
 
-    appEIS.controller('employeeUpdateController', function ($scope, $routeParams, employeeUpdateService, utilityService) {
+    appEIS.controller('employeeUpdateController', function ($scope, $rootScope, $routeParams, employeeUpdateService, utilityService) {
         
-        $scope.eid = $routeParams.EmployeeId;
+        $scope.eid = $routeParams.EmployeeId ? $routeParams.EmployeeId : $rootScope.EmpSignIn.EmployeeId;
         employeeUpdateService.getEmpById($scope.eid)
                              .then(function(result) {
                                  $scope.Emp = result;
