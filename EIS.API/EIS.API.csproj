@@ -132,6 +132,10 @@
       <Project>{79a40ddc-26dd-4865-8588-86e2699c8f61}</Project>
       <Name>EIS.BOL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EIS.DAL\EIS.DAL.csproj">
+      <Project>{CC23AD79-1878-41B9-B2C8-9C8A5537E72D}</Project>
+      <Name>EIS.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

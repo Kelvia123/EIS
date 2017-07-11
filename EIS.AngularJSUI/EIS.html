@@ -18,19 +18,19 @@
                 <li class="active">
                     <a href="#/Home">Home<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-home"></span></a>
                 </li>
-                <li>
+                <li ng-show="Auth == 'true'">
                     <a href="#/EmployeeManagement">Employee Mgmt<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-tasks"></span></a>
                 </li>
-                <li>
+                <li ng-show="Auth == 'true'">
                     <a href="#/EmployeeProfile">Employee Profile<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-pencil"></span></a>
                 </li>
-                <li>
+                <li ng-show="Auth == 'true'">
                     <a href="#/Logout">Logout<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-log-out"></span></a>
                 </li>
-                <li>
+                <li ng-show="Auth == 'false'">
                     <a href="#/Login">Login<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-log-in"></span></a>
                 </li>
-                <li>
+                <li ng-show="Auth == 'true'">
                     <a href="#">Welcome, FirstName<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-user"></span></a>
                 </li>
             </ul>
@@ -63,6 +63,7 @@
 <script src="Scripts/angular.min.js"></script>
 <script src="Scripts/angular-route.min.js"></script>
 <script src="Scripts/dirPagination.js"></script>
+<script src="Scripts/angular-cookies.min.js"></script>
 
 <script src="eis.js"></script>
 <script src="Views/Common/Home/home.js"></script>

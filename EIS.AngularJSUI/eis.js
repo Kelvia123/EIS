@@ -3,7 +3,7 @@
     $("#wrapper").toggleClass("active");
 });
 
-var appEIS = angular.module("appEIS", ["ngRoute", "angularUtils.directives.dirPagination"]);
+var appEIS = angular.module("appEIS", ["ngRoute", "angularUtils.directives.dirPagination", "ngCookies"]);
 
 appEIS.config(function($routeProvider) {
     $routeProvider.when('/Home', { templateUrl: 'Views/Common/Home/Home.html', controller: 'homeController' });   
@@ -13,6 +13,14 @@ appEIS.config(function($routeProvider) {
     $routeProvider.when('/Login', { templateUrl: 'Views/Common/Login/Login.html', controller: 'loginController' });
     $routeProvider.when('/Logout', {  });
     $routeProvider.otherwise({ redirectTo: '/Home' });
+});
+
+appEIS.run(function($rootScope, $cookies) {
+    if ($cookies.get("Auth") == null) {
+        $cookies.put("Auth", "false");
+    }
+
+    $rootScope.Auth = $cookies.get("Auth");
 });
 
 appEIS.factory('utilityService', function($http) {
