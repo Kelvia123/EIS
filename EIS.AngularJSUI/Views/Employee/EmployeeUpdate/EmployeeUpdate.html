@@ -4,7 +4,8 @@
 <div class="alert alert-success" id="alert" ng-show="showAlert">
     {{Msg}}
 </div>
-<form name="UpdateEmployeeForm" novalidate ng-show="Emp != null">    
+<div ng-show="Emp != null && EmpSignIn.Role.RoleCode == 'U' && Emp.EmployeeId != EmpSignIn.EmployeeId"><h1>Access Denied</h1></div>
+<form name="UpdateEmployeeForm" novalidate ng-show="Emp != null && (EmpSignIn.Role.RoleCode == 'A' || Emp.EmployeeId == EmpSignIn.EmployeeId)">    
     <div class="panel panel-primary" id="profilePanel">
         <!--Panel Heading-->
         <div class="panel-heading">

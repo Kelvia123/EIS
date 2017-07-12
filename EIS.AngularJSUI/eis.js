@@ -113,16 +113,28 @@ appEIS.directive('fileModel', function($parse) {
 appEIS.controller('appEISController', function ($rootScope, $location, utilityService, $cookies) {
 
      $rootScope.$on('$routeChangeStart', function(event, next, current) {
-         var guestRoutes = ['/Home', '/RecoverPassword'];
+         var guestRoutes = ['/Home', '/Login', '/RecoverPassword'];
+         var userRoutes = ['/Home', '/Logout', '/EmployeeProfile/:EmployeeId?'];
+         var adminRoutes = ['/Home', '/Logout', '/EmployeeProfile/:EmployeeId?', '/EmployeeManagement'];
 
-         //If user hasn't login
+         //If user hasn't login and try to get access to routes that's not a guest Route
          if ($rootScope.Auth == 'false' && $.inArray(next.$$route.originalPath, guestRoutes) == -1) {
              $location.path('/Login');
          }
          //If user already login
-         else if ($rootScope.Auth == 'true') {
-
+         if ($rootScope.Auth == 'true') {
              $rootScope.EmpSignIn = $cookies.getObject("EmpSignIn");
+             var role = $rootScope.EmpSignIn.Role.RoleCode;
+
+             // If user try to get access to route that's not a regular user Route
+             if (role == 'U' && $.inArray(next.$$route.originalPath, userRoutes) == -1) {
+                 $location.path('/Home');
+             }
+             // If admin try to get access to route that's not in adminRoutes collection
+             if (role == 'A' && $.inArray(next.$$route.originalPath, adminRoutes) == -1) {
+                 $location.path('/Home');
+             }
+
              utilityService.getFile("http://localhost:4676/api/Upload/", $rootScope.EmpSignIn.EmployeeId)
                  .then(function(result) {
                      $rootScope.imgSideBar = result;

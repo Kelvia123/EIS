@@ -18,7 +18,7 @@
                 <li class="active">
                     <a href="#/Home">Home<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-home"></span></a>
                 </li>
-                <li ng-show="Auth == 'true'">
+                <li ng-show="Auth == 'true' && EmpSignIn.Role.RoleCode == 'A'">
                     <a href="#/EmployeeManagement">Employee Mgmt<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-tasks"></span></a>
                 </li>
                 <li ng-show="Auth == 'true'">

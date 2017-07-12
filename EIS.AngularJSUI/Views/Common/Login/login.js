@@ -34,7 +34,6 @@
 
                             $cookies.putObject("EmpSignIn", $scope.Emp);
                             $rootScope.EmpSignIn = $cookies.getObject("EmpSignIn");
-                            //console.log($rootScope.EmpSignIn);
 
                             $location.path("/");
                         } else {
