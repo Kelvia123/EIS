@@ -28,13 +28,16 @@ appEIS.config(function($routeProvider) {
     $routeProvider.otherwise({ redirectTo: '/Home' });
 });
 
-appEIS.run(function($rootScope, $cookies) {
+appEIS.run(function($rootScope, $cookies, $http) {
     if ($cookies.get("Auth") == null) {
         $cookies.put("Auth", "false");
     }
 
     $rootScope.Auth = $cookies.get("Auth");
-    
+
+    // This is the API Key that's assigned by Service Provider, namely the server side
+    // Anyone who sends an API request without a Token, namely not from a Client known by the server, will be reject.
+    $http.defaults.headers.common['my_Token'] = "123456789";
 });
 
 appEIS.factory('utilityService', function($http) {
