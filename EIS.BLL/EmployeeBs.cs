@@ -46,7 +46,7 @@ namespace EIS.BLL
             }
 
             emp = empInDb;
-            return true;
+            return true;           
         }
 
         public bool Insert(Employee employee)

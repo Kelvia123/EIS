@@ -23,6 +23,8 @@ namespace EIS.API
 
             // Add APIKeyHandler to the Pipe line
             GlobalConfiguration.Configuration.MessageHandlers.Add(new APIKeyHandler());
+            // Add Global Exception Filter
+            config.Filters.Add(new EISExceptionAttribute());
         }
     }
 }

@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Files\log.txt" />
     <Content Include="Files\ProfilePics\anonymous.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -106,6 +107,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="EISExceptionAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
