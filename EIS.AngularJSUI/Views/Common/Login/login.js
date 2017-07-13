@@ -6,11 +6,11 @@
             var Emp;
 
             Emp = $http({ method: 'Post', url: 'http://localhost:4676/api/Login', data: employee })
-            .then(function(response) {
-                    return response.data;
-                }, function(error) {
-                    return error.data;
-                });
+            .then(function (response) {
+                    return response;
+            }, function (error) {
+                    return error;
+            });
 
             return Emp;
         };
@@ -24,9 +24,9 @@
             if (IsValid) {
                 loginService.getByEmp(emp)
                     .then(function(result) {
-                        if (result.ModelState == null) {
+                        if (result.status == 200) {
 
-                            $scope.Emp = result;
+                            $scope.Emp = result.data;
                             $scope.serverErrorMsgs = "";
 
                             $cookies.put("Auth", "true");
@@ -37,7 +37,7 @@
 
                             $location.path("/");
                         } else {
-                            $scope.serverErrorMsgs = result.ModelState;
+                            $scope.serverErrorMsgs = result.data.ModelState;
                         }
                     });
             }

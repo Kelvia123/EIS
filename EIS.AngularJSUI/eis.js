@@ -5,7 +5,8 @@
 
 var appEIS = angular.module("appEIS", ["ngRoute", "angularUtils.directives.dirPagination", "ngCookies"]);
 
-appEIS.config(function($routeProvider) {
+appEIS.config(function ($routeProvider, $httpProvider) {
+    $httpProvider.interceptors.push('myHttpInterceptor');
     $routeProvider.when('/Home', { templateUrl: 'Views/Common/Home/Home.html', controller: 'homeController' });   
     $routeProvider.when('/RecoverPassword', { templateUrl: 'Views/Common/RecoverPassword/RecoverPassword.html', controller: 'recoverPasswordController' });
     $routeProvider.when('/EmployeeManagement', { templateUrl: 'Views/Employee/EmployeeMgmt/EmployeeMgmt.html', controller: 'employeeMgmtController' });
@@ -38,6 +39,20 @@ appEIS.run(function($rootScope, $cookies, $http) {
     // This is the API Key that's assigned by Service Provider, namely the server side
     // Anyone who sends an API request without a Token, namely not from a Client known by the server, will be reject.
     $http.defaults.headers.common['my_Token'] = "123456789";
+});
+
+appEIS.factory('myHttpInterceptor', function($q, $window) {
+    return {
+      response: function(response) {
+          return response;
+      },
+      responseError: function(response) {
+          if (response.status == 500) {
+              $window.alert(response.statusText);
+          }
+          return $q.reject(response);
+      }
+    };
 });
 
 appEIS.factory('utilityService', function($http) {
