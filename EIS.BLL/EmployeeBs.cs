@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using EIS.DAL;
@@ -47,6 +48,35 @@ namespace EIS.BLL
 
             emp = empInDb;
             return true;           
+        }
+
+        public bool RecoverPasswordByEmail(ref Employee emp)
+        {
+            var empInDb = _employeeDb.GetByEmail(emp.Email);
+
+            if (empInDb == null)
+            {
+                ErrorList.Add("Email Doesn't Exist");
+            }
+            else
+            {
+                var subject = "Your Login Credentials on EIS";
+                var builder = new StringBuilder();
+                builder.AppendFormat("User Name: {0} \n", empInDb.Email);
+                builder.AppendFormat("Password: {0} \n", empInDb.Password);
+                builder.Append("Login Here: http://localhost:5695/EIS.html#/Login \n");
+                builder.Append("Regards, \n");
+                builder.Append("www.eis.com");
+                var body = builder.ToString();
+
+                Utility.SendMail(empInDb.Email, subject, body);
+            }
+
+            if (ErrorList.Any()) return false;
+
+            emp = empInDb;
+
+            return true;
         }
 
         public bool Insert(Employee employee)
