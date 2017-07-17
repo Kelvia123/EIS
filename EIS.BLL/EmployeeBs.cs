@@ -86,6 +86,17 @@ namespace EIS.BLL
 
             _employeeDb.Insert(employee);
 
+            var subject = "Your Employee Profile Has Been Created";
+            var sb = new StringBuilder();
+            sb.AppendFormat("User Name: {0} \n", employee.Email);
+            sb.AppendFormat("Password: {0} \n", employee.Password);
+            sb.Append("Login From Here: .... \n");
+            sb.Append("Regards,\n");
+            sb.Append("EIS Ademin");
+            var body = sb.ToString();
+
+            Utility.SendMail(employee.Email, subject, body);
+
             return true;
         }
 
@@ -102,6 +113,21 @@ namespace EIS.BLL
         public void Delete(string id)
         {
             _employeeDb.Delete(id);
+        }
+
+        public bool Remind(string id, string message)
+        {
+            var employeeInDb = _employeeDb.GetById(id);
+            if (employeeInDb == null)
+            {
+                ErrorList.Add("Target Email Doesn't Exist");
+            }
+
+            var subject = "Reminder from EIS Admin";
+
+            Utility.SendMail(employeeInDb.Email, subject, message);
+
+            return ErrorList.Count == 0;
         }
 
         private bool IsValidOnInsert(Employee employee)

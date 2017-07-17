@@ -85,5 +85,13 @@ namespace EIS.API.Controllers
 
             return Ok(employeeInDb);
         }
+
+        [ActionName("Remind")]
+        public IHttpActionResult Get(string id, string message)
+        {
+            if (!_employeeBs.Remind(id, message)) return NotFound();
+
+            return Ok();
+        }
     }
 }

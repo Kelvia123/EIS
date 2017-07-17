@@ -68,6 +68,7 @@
                 <th ng-click="Sort('FirstName')"><a>Name</a></th>
                 <th ng-click="Sort('Contact')"><a>Contact</a></th>
                 <th>Delete</th>
+                <th>Remind</th>
             </tr>
             </thead>
             <!--Table Body-->
@@ -78,6 +79,7 @@
                 <td>{{emp.FirstName}} {{emp.LastName}}</td>
                 <td>{{emp.Contact}}</td>
                 <td><a ng-click="DeleteEmployeeById(emp.EmployeeId)"><span class="glyphicon glyphicon-minus-sign"></span></a></td>
+                <td><a ng-click="RemindEmployeeById(emp)"><span class="glyphicon glyphicon-envelope"></span></a></td>
             </tr>
             </tbody>
         </table>

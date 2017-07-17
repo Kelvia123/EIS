@@ -42,6 +42,17 @@
                 return employee;
             }
 
+            empMgmtObj.remindEmployeeById = function(empId, msg) {
+                return $http({
+                            method: 'Get',
+                            url: 'http://localhost:4676/api/Employee/Remind',
+                            params: { id: empId, message: msg }
+                        })
+                        .then(function(response) {
+                            return response;
+                        });
+            }
+
             return empMgmtObj;
         });
 
@@ -100,7 +111,20 @@
             }
         }
 
-
+        $scope.RemindEmployeeById = function(emp) {
+            var msg = $window.prompt('Please enter your message:', 'Need your info!');
+            employeeMgmtService.remindEmployeeById(emp.EmployeeId, msg)
+                .then(function(result) {
+                    if (result.status == 200) {
+                        $scope.Msg = 'Reminder has been sent successfully';
+                        $scope.showAlert = true;
+                        $scope.serverErrorMsgs = "";
+                        utilityService.slideUpAlert();
+                    } else {
+                        $scope.serverErrorMsgs = result.data.ModelState;
+                    }
+                });
+        }
     });
 
 })();
