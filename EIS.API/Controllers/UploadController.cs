@@ -18,32 +18,28 @@ namespace EIS.API.Controllers
         {
             return GetFile(Id);
         }
+
         public HttpResponseMessage Post(string id)
         {
-            HttpResponseMessage result = null;
             var httpRequest = HttpContext.Current.Request;
-            if (httpRequest.Files.Count > 0)
+
+            if (httpRequest.Files.Count <= 0) return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            var postedFile = httpRequest.Files[0];
+            var filePath = "";
+
+            //Excel
+            if (postedFile.ContentType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
             {
-                var docFiles = new List<string>();
-
-                foreach (string file in httpRequest.Files)
-                {
-                    var postedFile = httpRequest.Files[file];
-                    var filePath = HttpContext.Current.Server.MapPath("~/Files/ProfilePics/" + id + ".jpeg");
-                    postedFile.SaveAs(filePath);
-
-                    docFiles.Add(filePath);
-                }
-
-                //result = Request.CreateResponse(HttpStatusCode.Created, docFiles);
-                return GetFile(id);
-            }
-            else
-            {
-                result = Request.CreateResponse(HttpStatusCode.BadRequest);
+                filePath = HttpContext.Current.Server.MapPath("~/Files/BulkData/" + postedFile.FileName);
+                postedFile.SaveAs(filePath);
+                return Request.CreateResponse(HttpStatusCode.Created, postedFile.FileName);
             }
 
-            return result;
+            // Image
+            filePath = HttpContext.Current.Server.MapPath("~/Files/ProfilePics/" + id + ".jpeg");
+            postedFile.SaveAs(filePath);
+            return GetFile(id);
         }
 
         private static HttpResponseMessage GetFile(string id)

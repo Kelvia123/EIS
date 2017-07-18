@@ -55,6 +55,22 @@ namespace EIS.API.Controllers
             return BadRequest(ModelState);                                  
         }
 
+        [ResponseType(typeof(int))]
+        [ActionName("CreateMultipleEmployees")]
+        public IHttpActionResult Post(string fileName)
+        {
+            var count = _employeeBs.CreateEmployeesFromFile(fileName);
+
+            if (count != 0) return Ok(count);
+
+            foreach (var error in _employeeBs.ErrorList)
+            {
+                ModelState.AddModelError("", error);
+            }
+             
+            return BadRequest(ModelState);
+        }
+
         [ResponseType(typeof(Employee))]
         public IHttpActionResult Put(Employee employee)
         {

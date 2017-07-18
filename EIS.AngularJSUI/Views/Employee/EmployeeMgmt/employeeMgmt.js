@@ -31,6 +31,21 @@
                 return employee;
             }
 
+            empMgmtObj.createMultipleEmployee = function (fileName) {
+                 
+                return $http({
+                            method: 'Post',
+                            url: 'http://localhost:4676/api/Employee/CreateMultipleEmployees',
+                            params: { fileName: fileName }
+                        })
+                        .then(function(response) {
+                                return response;
+                            },
+                            function(error) {
+                                return error;
+                            });
+            }
+
             empMgmtObj.deleteEmployeeById = function(empId) {
                 var employee;
 
@@ -70,8 +85,7 @@
         $scope.CreateEmployee = function (Emp, IsValid) {
 
             if (IsValid) {
-                Emp.Password = utilityService.randomPassword();
-
+                //Emp.Password = utilityService.randomPassword();
                 employeeMgmtService.createEmployee(Emp).then(function (result) {
                     if (result.ModelState == null) {
                         $scope.Msg = "You have successfully created " + result.EmployeeId;
@@ -88,6 +102,31 @@
                     }
                 });
             }
+        }
+
+        $scope.CreateMultipleEmployee = function() {
+            var file = $scope.myFile;
+            var uploadUrl = 'http://localhost:4676/api/Upload/';
+
+            utilityService.uploadFile(file, uploadUrl, null)
+                .then(function(fileName) {
+                    employeeMgmtService.createMultipleEmployee(fileName)
+                        .then(function(result) {
+                            if (result.status == 200) {
+                                $scope.Msg = 'You have successfully created ' + result.data + 'record(s)';
+                                $scope.showAlert = true;
+                                $scope.serverErrorMsgs = '';
+                                utilityService.slideUpAlert();
+
+                                employeeMgmtService.getAll().then(function(result) {
+                                    $scope.employees = result;
+                                });
+
+                            } else {
+                                $scope.serverErrorMsgs = result.data.ModelState;
+                            }
+                        });
+                });
         }
 
         $scope.DeleteEmployeeById = function (EmpId) {

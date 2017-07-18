@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Files\BulkData\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

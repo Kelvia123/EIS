@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using EIS.DAL;
 using EIS.BOL;
 
@@ -154,6 +158,61 @@ namespace EIS.BLL
             }
 
             return ErrorList.Count == 0;
-        }        
+        }
+
+        public int CreateEmployeesFromFile(string fileName)
+        {
+            var filePath = HttpContext.Current.Server.MapPath("~/Files/BulkData/" + fileName);
+            int count = 0;
+
+            DataTable dt = ReadExcelFile(filePath);
+
+            if (dt == null)
+            {
+                ErrorList.Add("ReadExcelFile Error");
+                return count;
+            }
+
+            foreach (DataRow item in dt.Rows)
+            {
+                var employee = new Employee()
+                {
+                    EmployeeId = item[0].ToString(),
+                    Email = item[1].ToString()
+                };
+
+                if (Insert(employee)) count++;
+            }
+
+            return count;
+        }
+
+        private DataTable ReadExcelFile(string filePath)
+        {
+            using (OleDbConnection conn = new OleDbConnection())
+            {
+                if (Path.GetExtension(filePath) != ".xlsx")
+                {
+                    ErrorList.Add("Only xlsx file is allowed");
+                    return null;
+                }
+
+                var dataTable = new DataTable();
+                conn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";" + "Extended Properties=Excel 12.0;";
+                using (var comm = new OleDbCommand())
+                {
+                    comm.CommandText = "Select * from [Sheet1$]";
+
+                    comm.Connection = conn;
+
+                    using (var dataAdapter = new OleDbDataAdapter())
+                    {
+                        dataAdapter.SelectCommand = comm;
+                        dataAdapter.Fill(dataTable);
+                        return dataTable;
+                    }
+                }
+            }
+        }
     }
 }

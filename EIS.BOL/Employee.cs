@@ -16,6 +16,7 @@ namespace EIS.BOL
         {
             CreatedDate = DateTime.Now;
             RoleId = 2;
+            Password = Guid.NewGuid().ToString("D").Substring(1, 8);
         }
 
         [Key]

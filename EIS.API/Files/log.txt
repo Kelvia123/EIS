@@ -23,3 +23,4 @@ Login failed for user ''.
 7/13/2017 10:10:21 AM : SQL Server service has been paused. No new connections will be allowed. To resume the service, use SQL Computer Manager or the Services application in Control Panel.
 Login failed for user ''.
 7/13/2017 10:11:06 AM : Sequence contains no elements
+7/17/2017 8:06:04 PM : The 'Microsoft.ACE.OLEDB.12.0' provider is not registered on the local machine.
