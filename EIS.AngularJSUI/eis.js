@@ -3,7 +3,7 @@
     $("#wrapper").toggleClass("active");
 });
 
-var appEIS = angular.module("appEIS", ["ngRoute", "angularUtils.directives.dirPagination", "ngCookies"]);
+var appEIS = angular.module("appEIS", ["ngRoute", "angularUtils.directives.dirPagination", "ngCookies", "angular-loading-bar"]);
 
 appEIS.config(function ($routeProvider, $httpProvider, $locationProvider) {
     $httpProvider.interceptors.push('myHttpInterceptor');
