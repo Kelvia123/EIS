@@ -1,2 +1,4 @@
 # EIS
-Employee Information System application developed with ASP.NET Web API 2 and AngularJS
+AngularJS/Web API 2/Entity Framework/3-Tier Architecture
+
+Employee Information System
