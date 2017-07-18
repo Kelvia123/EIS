@@ -3,6 +3,7 @@
 <head>
     <title>EIS - Employee Information System</title>
     <meta charset="utf-8" />
+    <base href="/">
 </head>
 <body>
     <div id="wrapper" class="active">
@@ -16,19 +17,19 @@
             </ul>
             <ul class="sidebar-nav" id="sidebar">
                 <li class="active">
-                    <a href="#/Home">Home<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-home"></span></a>
+                    <a href="Home">Home<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-home"></span></a>
                 </li>
                 <li ng-show="Auth == 'true' && EmpSignIn.Role.RoleCode == 'A'">
-                    <a href="#/EmployeeManagement">Employee Mgmt<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-tasks"></span></a>
+                    <a href="EmployeeManagement">Employee Mgmt<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-tasks"></span></a>
                 </li>
                 <li ng-show="Auth == 'true'">
-                    <a href="#/EmployeeProfile">Employee Profile<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-pencil"></span></a>
+                    <a href="EmployeeProfile">Employee Profile<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-pencil"></span></a>
                 </li>
                 <li ng-show="Auth == 'true'">
-                    <a href="#/Logout">Logout<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-log-out"></span></a>
+                    <a href="Logout">Logout<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-log-out"></span></a>
                 </li>
                 <li ng-show="Auth == 'false'">
-                    <a href="#/Login">Login<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-log-in"></span></a>
+                    <a href="Login">Login<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-log-in"></span></a>
                 </li>
                 <li ng-show="Auth == 'true'">
                     <a href="#"><img src="data:image/jpeg;base64,{{imgSideBar}}" class="img-circle" width="30" height="30"/> Welcome, {{EmpSignIn.FirstName}}<span style="font-size: 16px;" class="pull-right glyphicon glyphicon-user"></span></a>

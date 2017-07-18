@@ -5,7 +5,7 @@
 
 var appEIS = angular.module("appEIS", ["ngRoute", "angularUtils.directives.dirPagination", "ngCookies"]);
 
-appEIS.config(function ($routeProvider, $httpProvider) {
+appEIS.config(function ($routeProvider, $httpProvider, $locationProvider) {
     $httpProvider.interceptors.push('myHttpInterceptor');
     $routeProvider.when('/Home', { templateUrl: 'Views/Common/Home/Home.html', controller: 'homeController' });   
     $routeProvider.when('/RecoverPassword', { templateUrl: 'Views/Common/RecoverPassword/RecoverPassword.html', controller: 'recoverPasswordController' });
@@ -27,6 +27,8 @@ appEIS.config(function ($routeProvider, $httpProvider) {
             }
         });
     $routeProvider.otherwise({ redirectTo: '/Home' });
+
+    $locationProvider.html5Mode(true); 
 });
 
 appEIS.run(function($rootScope, $cookies, $http) {
