@@ -1,7 +1,5 @@
-# EIS
-AngularJS/Web API 2/Entity Framework/3-Tier Architecture
-
 # Employee Information System
+AngularJS/Web API 2/Entity Framework/3-Tier Architecture
 
 ## Login
 ![login](https://user-images.githubusercontent.com/16660134/28336109-c2fc20b6-6bce-11e7-84d1-d59a3ca3b7ae.png)
