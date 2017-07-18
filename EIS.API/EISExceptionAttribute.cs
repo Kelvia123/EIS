@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Http.Filters;
 
@@ -27,6 +28,13 @@ namespace EIS.API
                 actionExecutedContext.ActionContext.ModelState.AddModelError("", "Sql Server service is not available");
                 actionExecutedContext.Response =
                     actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.BadGateway,
+                        actionExecutedContext.ActionContext.ModelState);
+            }
+            else if(actionExecutedContext.Exception is SmtpException)
+            {
+                actionExecutedContext.ActionContext.ModelState.AddModelError("", "Unable to send Email.");
+                actionExecutedContext.Response =
+                    actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.GatewayTimeout,
                         actionExecutedContext.ActionContext.ModelState);
             }
             else
